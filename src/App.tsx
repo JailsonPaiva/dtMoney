@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { GlobalStyle } from './styles/global';
 import { useState } from 'react';
 import { NewTrasactionModal } from './components/NewTrasactionModal';
+import {  TransactionsProvider } from './hooks/useTransactions';
 
 export function App(){
   const [ isNewTransactionModalOpen, setIsNewTransactionModalOpen ] = useState(false)
@@ -16,7 +17,8 @@ export function App(){
   }
 
   return (
-    <div className="App">
+    // TEMOS QUE COLOCAR O CONTEXTO POR VOLTAR DOS COMPONENTES QUE QUEREMOS QUE ELES ACESSEM OS DADOS, NESSE CASO O COMPONENTE APP
+    <TransactionsProvider>
       <Header onOperNewTrasactionModal={handleOpenNewTransactionModal}/>
 
       <Dashboard />
@@ -27,7 +29,7 @@ export function App(){
       />
 
       <GlobalStyle />
-    </div>
+    </TransactionsProvider>
   );
 }
 
